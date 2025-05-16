@@ -1,9 +1,9 @@
 <?php
-
 class TestController
 {
     public function mainPage()
     {
-        return new View('main');
+        $articles = include 'data/articles.php';
+        return new View('main', ['articles' => $articles]);
     }
 }

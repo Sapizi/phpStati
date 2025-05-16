@@ -2,13 +2,45 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/assets/style.css">
-    <title>Document</title>
-    
+    <title>Главная</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px;
+            border: 1px solid #ccc;
+            text-align: left;
+        }
+    </style>
 </head>
 <body>
-    привет, <?= $_SESSION['user']['name'] ?>!
+
+<?php if (isset($_SESSION['user'])): ?>
+    Привет, <?= htmlspecialchars($_SESSION['user']['name']) ?>!
+<?php endif; ?>
+
+<h2>Статьи</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Название</th>
+            <th>Дата</th>
+            <th>Описание</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($articles as $article): ?>
+            <tr>
+                <td><?= htmlspecialchars($article['title']) ?></td>
+                <td><?= htmlspecialchars($article['date']) ?></td>
+                <td><?= htmlspecialchars(mb_substr($article['content'], 0, 200)) . '...' ?></td>
+            </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>
+
 </body>
 </html>
