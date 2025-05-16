@@ -8,3 +8,4 @@ Route::post("/login", [LoginController::class, 'login']);
 Route::post("/register", [RegisterController::class, 'register']);
 
 
+Route::get("/my-blog", [MyBlogController::class, 'show']);

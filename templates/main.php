@@ -3,44 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <title>Главная</title>
-    <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        th, td {
-            padding: 8px;
-            border: 1px solid #ccc;
-            text-align: left;
-        }
-    </style>
+    <link rel="stylesheet" href="/assets/style.css">
 </head>
 <body>
 
-<?php if (isset($_SESSION['user'])): ?>
-    Привет, <?= htmlspecialchars($_SESSION['user']['name']) ?>!
-<?php endif; ?>
+    <?php if (isset($_SESSION['user'])): ?>
+        Привет, <?= htmlspecialchars($_SESSION['user']['name']) ?>!
+        <a href="/my-blog">Мои статьи</a>
+    <?php endif; ?>
 
-<h2>Статьи</h2>
+    <h2>Статьи</h2>
 
-<table>
-    <thead>
-        <tr>
-            <th>Название</th>
-            <th>Дата</th>
-            <th>Описание</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php foreach ($articles as $article): ?>
+    <table>
+        <thead>
             <tr>
-                <td><?= htmlspecialchars($article['title']) ?></td>
-                <td><?= htmlspecialchars($article['date']) ?></td>
-                <td><?= htmlspecialchars(mb_substr($article['content'], 0, 200)) . '...' ?></td>
+                <th>Название</th>
+                <th>Дата</th>
+                <th>Описание</th>
             </tr>
-        <?php endforeach; ?>
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            <?php foreach ($articles as $article): ?>
+                <tr>
+                    <td><?= htmlspecialchars($article['title']) ?></td>
+                    <td><?= htmlspecialchars($article['date']) ?></td>
+                    <td><?= htmlspecialchars(mb_substr($article['content'], 0, 200)) . '...' ?></td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
 
 </body>
 </html>
